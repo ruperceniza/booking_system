@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking List</title>
+</head>
+<body>
+    <h1>All Bookings</h1>
+    <ul>
+        {% for booking in bookings %}
+            <li>
+                Booking for {{ booking.guest_name }} (Room {{ booking.room.room_number }}): 
+                {{ booking.check_in_date }} to {{ booking.check_out_date }} - 
+                ${{ booking.total_price }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
