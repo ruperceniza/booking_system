@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,16 +76,18 @@ WSGI_APPLICATION = 'booking_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'booking_system',
-        'USER': 'postgres',
-        'PASSWORD': 'rupergwapo12345',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': config('DB_NAME'),       # Fetches 'DB_NAME' from .env
+        'USER': config('DB_USER'),       # Fetches 'DB_USER' from .env
+        'PASSWORD': config('DB_PASSWORD'),  # Fetches 'DB_PASSWORD' from .env
+        'HOST': config('DB_HOST'),       # Fetches 'DB_HOST' from .env
+        'PORT': config('DB_PORT'),       # Fetches 'DB_PORT' from .env
     }
 }
+
 
 #super user 
 #username :admin
@@ -131,3 +134,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
