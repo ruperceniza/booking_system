@@ -1,5 +1,5 @@
 from django import forms
-from .models import Booking, Room
+from .models import Booking, Room, Payment
 
 
 class BookingForm(forms.ModelForm):
@@ -10,3 +10,8 @@ class BookingForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['room'].queryset = Room.objects.filter(is_available=True)
+
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = ['payment_method', 'account_name', 'account_number', 'amount_paid', 'payment_date']
